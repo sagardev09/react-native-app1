@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import img1 from "../assets/flow1.png"
 import img2 from "../assets/flow2.png"
@@ -17,7 +17,7 @@ import h3 from "../assets/h3.png"
 import h4 from "../assets/h4.png"
 import h5 from "../assets/h5.png"
 
-export default function MainScreen() {
+export default function MainScreen({ navigation }) {
 
     const flowerData = [
         { uid: 1, name: 'Orchid', category: 'Outdoor', price: 10.99, imageUrl: img1, color: '#E8BD0D', },
@@ -41,6 +41,10 @@ export default function MainScreen() {
         { uid: 4, name: 'Botanix', openingtime: '12am - 12pm', imageUrl: h4, color: '#EF5354', },
         { uid: 5, name: 'RootsRise', openingtime: '10am - 10pm', imageUrl: h5, color: '#FF5733', },
     ];
+
+    const handlesingleproduct = () => {
+        navigation.navigate("SinglePlant")
+    }
 
     return (
         <View style={styles.container}>
@@ -81,21 +85,23 @@ export default function MainScreen() {
                         showsHorizontalScrollIndicator={false}>
                         {
                             flowerData.map((item) => (
-                                <View style={[styles.subcategory, { backgroundColor: item.color, overflow: 'hidden' }]} key={item.uid} >
-                                    <View>
-                                        <Image style={styles.flowimg} source={item.imageUrl} />
-                                    </View>
-                                    <View style={styles.infoconatiner}>
+                                <TouchableWithoutFeedback onPress={handlesingleproduct} key={item.uid} i>
+                                    <View style={[styles.subcategory, { backgroundColor: item.color, overflow: 'hidden' }]} >
                                         <View>
-                                            <Text style={styles.infocategory}>{item.category}</Text>
-                                            <Text style={styles.infoname}>{item.name}</Text>
+                                            <Image style={styles.flowimg} source={item.imageUrl} />
                                         </View>
-                                        <View style={styles.priceconatiner}>
-                                            <Text style={[styles.pricetext, { color: item.color }]}>{item.price}</Text>
+                                        <View style={styles.infoconatiner}>
+                                            <View>
+                                                <Text style={styles.infocategory}>{item.category}</Text>
+                                                <Text style={styles.infoname}>{item.name}</Text>
+                                            </View>
+                                            <View style={styles.priceconatiner}>
+                                                <Text style={[styles.pricetext, { color: item.color }]}>{item.price}</Text>
+                                            </View>
                                         </View>
+                                        <Image style={styles.bgshade} source={require("../assets/bg.png")} />
                                     </View>
-                                    <Image style={styles.bgshade} source={require("../assets/bg.png")} />
-                                </View>
+                                </TouchableWithoutFeedback>
                             ))
                         }
                     </ScrollView>
@@ -115,6 +121,7 @@ export default function MainScreen() {
                         showsHorizontalScrollIndicator={false}>
                         {
                             flowerData2.map((item) => (
+
                                 <View style={[styles.recentviewedcategory]} key={item.uid} >
                                     <View style={[styles.recentviewedcategorycontainer, { backgroundColor: item.color, overflow: 'hidden' }]}>
                                         <Image style={[styles.recentviewedimg]} source={item.imageUrl} />
@@ -125,6 +132,7 @@ export default function MainScreen() {
                                         <Text style={styles.recentviewedinfoname}>{item.name}</Text>
                                     </View>
                                 </View>
+
                             ))
                         }
                     </ScrollView>

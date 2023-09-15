@@ -6,6 +6,7 @@ import Screen2 from './Screens/Screen2';
 import Screen3 from './Screens/Screen3';
 import Login from './Screens/Login';
 import MainScreen from './Screens/MainScreen';
+import SinglePlant from './Screens/SinglePlant';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,6 +53,15 @@ export default function App() {
         <Stack.Screen
           name="MainScreen"
           component={MainScreen}
+          options={
+            {
+              headerShown: false
+            }
+          }
+        />
+        <Stack.Screen
+          name="SinglePlant"
+          component={SinglePlant}
           options={
             {
               headerShown: false
