@@ -12,13 +12,14 @@ export default function Login({ navigation }) {
     const handlelogin = () => {
         if (username === "Sagardev" && password === "1234") {
             navigation.navigate("MainScreen");
-            setusername("")
-            setpassword("")
             setIsVisible(false)
-        } else {
-            setIsVisible(true);
             setusername("")
             setpassword("")
+        } else {
+            setusername("")
+            setpassword("")
+            setIsVisible(true);
+
         }
     }
 
